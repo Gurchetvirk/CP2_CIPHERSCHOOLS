@@ -1,37 +1,69 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
-class Solution {
-public:
-    ListNode* removeElements(ListNode* head, int val) {
-        ListNode *temp=head;
-        ListNode *prev=head;
+#include<bits/stdc++.h>
+using namespace std;
+struct linkedList{
+    int data;
+    linkedList* next;
+}*head;
+
+linkedList *insert(int n)
+{
+    linkedList* prev=NULL,*myNode,*head;
+    int item;
+    for(int i=0;i<n;i++){
+        cin>>item;
+        myNode=new linkedList;
+        myNode->data=item;
+        myNode->next=NULL;
+        if(prev==NULL){
+            prev=myNode;
+            head=prev;
+        }
+        else
+        {
+            prev->next=myNode;
+            prev=myNode;
+        }
+    }
+    return head;
+}
+
+void show(linkedList *head){
+    while(head){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+}
+
+void removeElements(linkedList* head, int data) {
+        linkedList *temp=head;
+        linkedList *prev=head;
         if(head==NULL)
-            return nullptr;
-        else if(head->val == val){
+            return;
+        else if(head->data == data){
             head=head->next;
         }
         else
         {
             while(temp!=NULL)
-        {
-            if(temp->val==val)
+            {
+            if(temp->data==data)
             {
                 prev->next=temp->next;
             }
             else
                prev=temp;
                 temp=temp->next;
-            
+            }
         }
-        }
-        return head;
-    }
-};
+        return;
+}
+
+int main(){
+    int n,item;
+    cin>>n;
+    head=insert(n);
+    cout<<"Enter item to delete=";
+    cin>>item;
+    removeElements(head,item);
+    show(head);
+}

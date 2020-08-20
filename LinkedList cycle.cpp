@@ -7,13 +7,11 @@
  * };
  */
 
-
- //************************************************This is leet  code solution***********************************************
-
+ //****************************************Leet Code Problem 141*****************************
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if( head == NULL ){
+        if(head==NULL){
             return false;
         }
         else if(head->next == NULL){

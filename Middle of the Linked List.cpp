@@ -1,22 +1,41 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+#include<bits/stdc++.h>
+using namespace std;
+struct linkedList{
+    int data;
+    linkedList* next;
+}*head;
 
+linkedList *insert(int n)
+{
+    linkedList* prev=NULL,*myNode,*head;
+    int item;
+    for(int i=0;i<n;i++){
+        cin>>item;
+        myNode=new linkedList;
+        myNode->data=item;
+        myNode->next=NULL;
+        if(prev==NULL){
+            prev=myNode;
+            head=prev;
+        }
+        else
+        {
+            prev->next=myNode;
+            prev=myNode;
+        }
+    }
+    return head;
+}
 
-//************************************************This is leet  code solution***********************************************
+void show(linkedList *head){
+    while(head){
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+}
 
-
-class Solution {
-public:
-    ListNode* middleNode(ListNode* head) {
-        ListNode* myNode=head;
+linkedList* middleNode(linkedList* head) {
+        linkedList* myNode=head;
         int i=0,j=0;
         while(myNode)
         {
@@ -24,7 +43,6 @@ public:
             myNode=myNode->next;
         }
         i=i/2+1;
-        cout<<i;
         myNode=head;
         while(myNode)
         {
@@ -36,5 +54,13 @@ public:
             myNode=myNode->next;
         }
         return head;
-    }
-};
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    head=insert(n);
+    head=middleNode(head);
+    show(head);
+}
